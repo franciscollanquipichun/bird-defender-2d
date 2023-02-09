@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Enemigo_01.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Enemigos_01.gd" type="Script" id=2]
+[ext_resource path="res://scripts/EnemigosFollow.gd" type="Script" id=3]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 1, -3.2099, 9.02338, 3.2099, -9.02338, -62, 449, 0, 0, 0, 0, -128, 4, 0, 0, 0, 0, -193, 449, 0, 0, 0, 0, -256, 2, 0, 0, 0, 0, -321, 450, 0, 0, 0, 0, -384, 2, 0, 0, 0, 0, -447, 450, 0, 0, 0, 0, -511, 1, 0, 0, 0, 0, -575, 451, 0, 0, 0, 0, -641, 3, -0.277283, -0.450362, 0.277283, 0.450362, -703, 449, 0, 0, 0, 0, -768, 3, 0, 0, 0, 0, -831, 451, 0, 0, 0, 0, -895, 3, 0, 0, 0, 0, -960, 451, 0, 0, 0, 0, -1024, 3, 0, 0, 0, 0, -1087, 450 )
+}
+
+[node name="Enemigos_x2_02" type="Node2D"]
+script = ExtResource( 2 )
+speed = 150.0
+
+[node name="Path2D" type="Path2D" parent="."]
+self_modulate = Color( 0.945098, 0.211765, 0.0666667, 0.701961 )
+curve = SubResource( 1 )
+script = ExtResource( 3 )
+
+[node name="PathFollow2D_01" type="PathFollow2D" parent="Path2D"]
+self_modulate = Color( 0.913725, 0.0980392, 0.0980392, 1 )
+position = Vector2( 0, 1 )
+rotate = false
+
+[node name="Enemigo" parent="Path2D/PathFollow2D_01" instance=ExtResource( 1 )]
+
+[node name="PathFollow2D_02" type="PathFollow2D" parent="Path2D"]
+self_modulate = Color( 0.913725, 0.0980392, 0.0980392, 1 )
+position = Vector2( -28.1012, 199.233 )
+offset = 200.0
+rotate = false
+
+[node name="Enemigo" parent="Path2D/PathFollow2D_02" instance=ExtResource( 1 )]

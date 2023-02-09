@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/Enemigo_01.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Enemigo_kamikaze.gd" type="Script" id=2]
+
+[node name="Enemigo_kamikaze" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Enemigo" parent="." instance=ExtResource( 1 )]
+modulate = Color( 0.941176, 0.929412, 0.0784314, 1 )

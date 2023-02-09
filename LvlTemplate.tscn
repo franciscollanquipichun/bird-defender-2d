@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/fonts/Share/Share-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scripts/Camera2D.gd" type="Script" id=2]
+[ext_resource path="res://scenes/PowerUp.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Personaje.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/EndLvl.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Enemigo_kamikaze.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Enemigos_x3_01.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Enemigos_x2_01.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Enemigos_x2_02.tscn" type="PackedScene" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 42
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="lvl_template" type="Node2D"]
+__meta__ = {
+"_editor_description_": "Template para la generación de los niveles. Contiene instancias de todos los elementos del juego."
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 960, 540 )
+current = true
+script = ExtResource( 2 )
+
+[node name="Personaje" parent="Camera2D" instance=ExtResource( 4 )]
+position = Vector2( -760, 0 )
+
+[node name="Enemigos" type="Node2D" parent="."]
+
+[node name="Enemigos_x2_01_1" parent="Enemigos" instance=ExtResource( 8 )]
+position = Vector2( 2410, 68 )
+
+[node name="Enemigos_x3_01_1" parent="Enemigos" instance=ExtResource( 7 )]
+position = Vector2( 2725, 132 )
+
+[node name="Enemigo_kamikaze" parent="Enemigos" instance=ExtResource( 6 )]
+position = Vector2( 3161, 171 )
+
+[node name="Enemigos_x2_02_1" parent="Enemigos" instance=ExtResource( 9 )]
+position = Vector2( 3707, 78 )
+
+[node name="PowerUp" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1606, 853 )
+
+[node name="EndLvl" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8608, 0 )
+next_level = "res://LvlTemplate.tscn"
+
+[node name="HUB" type="CanvasLayer" parent="." groups=["HUB"]]
+
+[node name="LivesIndicator" type="Node2D" parent="HUB"]
+
+[node name="Label" type="Label" parent="HUB/LivesIndicator"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 192.0
+margin_bottom = 101.0
+custom_colors/font_color = Color( 0.882353, 0.607843, 0.054902, 1 )
+custom_colors/font_color_shadow = Color( 0.180392, 0.164706, 0.164706, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Lives"
+align = 1
+uppercase = true
+
+[node name="Value" type="Label" parent="HUB/LivesIndicator"]
+margin_left = 50.0
+margin_top = 100.0
+margin_right = 178.0
+margin_bottom = 151.0
+custom_colors/font_color = Color( 0.882353, 0.607843, 0.054902, 1 )
+custom_colors/font_color_shadow = Color( 0.180392, 0.164706, 0.164706, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 1
+uppercase = true
+
+[node name="ScoreIndicator" type="Node2D" parent="HUB"]
+
+[node name="Label" type="Label" parent="HUB/ScoreIndicator"]
+margin_left = 250.0
+margin_top = 50.0
+margin_right = 392.0
+margin_bottom = 101.0
+custom_colors/font_color = Color( 0.882353, 0.607843, 0.054902, 1 )
+custom_colors/font_color_shadow = Color( 0.180392, 0.164706, 0.164706, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Score"
+align = 1
+uppercase = true
+
+[node name="Value" type="Label" parent="HUB/ScoreIndicator"]
+margin_left = 250.0
+margin_top = 100.0
+margin_right = 378.0
+margin_bottom = 151.0
+custom_colors/font_color = Color( 0.882353, 0.607843, 0.054902, 1 )
+custom_colors/font_color_shadow = Color( 0.180392, 0.164706, 0.164706, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 2
+uppercase = true
